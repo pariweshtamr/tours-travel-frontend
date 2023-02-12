@@ -4,9 +4,11 @@ import heroImg from "../../assets/images/hero-img01.jpg"
 import heroImg2 from "../../assets/images/hero-img02.jpg"
 import heroVideo from "../../assets/images/hero-video.mp4"
 import worldImg from "../../assets/images/world.png"
+import experienceImg from "../../assets/images/experience.png"
 import Subtitle from "../../components/Subtitle/Subtitle"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import ServiceList from "../../components/Services/ServiceList"
+import FeaturedTours from "../../components/FeaturedTours/FeaturedTours"
 
 const Home = () => {
   return (
@@ -54,7 +56,7 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-      {/* ======== hero section start ========= */}
+      {/* ======== Hero section start ========= */}
       <section>
         <Container>
           <Row>
@@ -66,8 +68,72 @@ const Home = () => {
           </Row>
         </Container>
       </section>
+      {/* ========= Hero section end ======== */}
 
       {/* ========= Featured tour section start ======== */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg={12} className="mb-5">
+              <Subtitle subtitle="Explore" />
+              <h2 className="featured-tour-title">Our featured tours</h2>
+            </Col>
+            <FeaturedTours />
+          </Row>
+        </Container>
+      </section>
+      {/* ========= Featured tour section end ======== */}
+
+      {/* ========= Experience section start ======== */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg={6}>
+              <div className="experience-content">
+                <Subtitle subtitle="Experience" />
+                <h2 className="">
+                  With all our experience <br /> we will give you the <br />{" "}
+                  best service
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.{" "}
+                  <br /> Dolor tempora maiores nam molestiae praesentium, <br />{" "}
+                  iure consequatur dicta reprehenderit aspernatur sapiente.
+                </p>
+              </div>
+
+              <div className="counter-wrapper d-flex align-items-center gap-5">
+                <div className="counter-box">
+                  <span>12k+</span>
+                  <h6>Successful Trips</h6>
+                </div>
+                <div className="counter-box">
+                  <span>2k+</span>
+                  <h6>Regulat Clients</h6>
+                </div>
+                <div className="counter-box">
+                  <span>15</span>
+                  <h6>Years Experience</h6>
+                </div>
+              </div>
+            </Col>
+            <Col lg={6}>
+              <div className="experience-img">
+                <img src={experienceImg} alt="experience-img" />
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      {/* ========= Experience section end ======== */}
+
+      {/* ========= Gallery section start ======== */}
+      <section>
+        <Container>
+          <Row></Row>
+        </Container>
+      </section>
+      {/* ========= Gallery section end ======== */}
     </>
   )
 }
