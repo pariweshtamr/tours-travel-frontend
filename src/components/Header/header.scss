@@ -6,6 +6,10 @@
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
   box-shadow: rgba(17, 12, 46, 0.15) 0 48px 100px 0;
+  position: sticky;
+  background: #fff;
+  z-index: 999;
+  top: 0;
 
   .logo img {
     width: 30%;
@@ -37,14 +41,14 @@
     display: none;
   }
 
-  .sticky-header {
-    width: 100%;
-    height: 80px;
-    line-height: 80px;
-    background: #fff;
-    position: sticky;
-    top: 0;
-    left: 0;
-    box-shadow: 4px 3px 8px -3px #ddd;
-  }
+  // .sticky-header {
+  //   width: 100%;
+  //   height: 80px;
+  //   line-height: 80px;
+  //   background: #fff;
+  //   position: sticky;
+  //   top: 0;
+  //   left: 0;
+  //   box-shadow: 4px 3px 8px -3px #ddd;
+  // }
 }

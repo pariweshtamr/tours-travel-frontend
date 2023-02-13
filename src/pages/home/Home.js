@@ -9,6 +9,9 @@ import Subtitle from "../../components/Subtitle/Subtitle"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import ServiceList from "../../components/Services/ServiceList"
 import FeaturedTours from "../../components/FeaturedTours/FeaturedTours"
+import MasonryImagesGallery from "../../components/ImageGallery/MasonryImagesGallery"
+import Testimonials from "../../components/Testimonal/Testimonials"
+import NewsLetter from "../../components/NewsLetter/NewsLetter"
 
 const Home = () => {
   return (
@@ -130,10 +133,40 @@ const Home = () => {
       {/* ========= Gallery section start ======== */}
       <section>
         <Container>
-          <Row></Row>
+          <Row>
+            <Col lg={12}>
+              <Subtitle subtitle="Gallery" />
+              <h2 className="gallery-title">
+                Visit out customers tour gallery
+              </h2>
+            </Col>
+            <Col lg={12}>
+              <MasonryImagesGallery />
+            </Col>
+          </Row>
         </Container>
       </section>
       {/* ========= Gallery section end ======== */}
+
+      {/* ========= Testimonial section start ======== */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg={12}>
+              <Subtitle subtitle="Fans Love" />
+              <h2 className="testimonial-title">What our fans say about us</h2>
+            </Col>
+            <Col lg={12}>
+              <Testimonials />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      {/* ========= Testimonial section end ======== */}
+
+      {/* ========= Newsletter section start ======== */}
+      <NewsLetter />
+      {/* ========= Newsletter section end ======== */}
     </>
   )
 }

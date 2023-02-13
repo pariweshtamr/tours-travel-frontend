@@ -1,10 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Island+Moments&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
+// :root {
+//   --primary-color: #ff7e01;
+//   --secondary-color: #faa935;
+//   --heading-color: #0b2727;
+//   --text-color: #6e7074;
+//   --font-name: "Montserrat", sans-serif;
+//   --subtitle-font-name: "Island Moments", cursive;
+// }
 :root {
-  --primary-color: #ff7e01;
-  --secondary-color: #faa935;
-  --heading-color: #0b2727;
+  --primary-color: #70dad3;
+  // --primary-color: #bdf3f0;
+  --secondary-color: #ec8c6f;
+  --heading-color: #3b4948;
   --text-color: #6e7074;
   --font-name: "Montserrat", sans-serif;
   --subtitle-font-name: "Island Moments", cursive;
@@ -68,12 +77,11 @@ ul {
 }
 
 .section-subtitle {
-  background: var(--secondary-color);
+  background: var(--primary-color);
   font-family: var(--subtitle-font-name);
   width: max-content;
   padding: 0px 0.5rem;
   padding-right: 1rem;
-
   border-radius: 50px;
   font-weight: 500;
   font-size: 1.7rem;

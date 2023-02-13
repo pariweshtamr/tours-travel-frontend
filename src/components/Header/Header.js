@@ -4,7 +4,7 @@ import logo from "../../assets/images/logo.png"
 import { Link, NavLink } from "react-router-dom"
 const Header = () => {
   return (
-    <header className="header sticky-header">
+    <header className="header">
       <Container>
         <Row>
           <div className="nav-wrapper d-flex align-items-center justify-content-between">

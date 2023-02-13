@@ -76,7 +76,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--primary-color);
+      background: var(--secondary-color);
       color: #fff;
       font-size: 1.6rem;
       font-weight: 600;
@@ -95,4 +95,24 @@
   img {
     width: 90%;
   }
+}
+
+.gallery-title {
+  font-size: 2.3rem;
+  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+}
+
+.masonry-img {
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.testimonial-title {
+  margin-top: 1rem;
+  font-size: 2.3rem;
+  margin-bottom: 2rem;
 }
