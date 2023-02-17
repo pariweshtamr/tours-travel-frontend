@@ -91,9 +91,9 @@
     "featured": true
   },
   {
-    "title": "Snowy Mountains, Thailand",
+    "title": "Snowy Mountains, Australia",
     "city": "Bangkok",
-    "address": "Somewhere in Thailand",
+    "address": "Somewhere in Australia",
     "distance": 500,
     "price": 99,
     "maxGroupSize": 8,
