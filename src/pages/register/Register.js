@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, Col, Container, Form, FormGroup, Row } from "reactstrap"
 import "../login/login.scss"
 import regImg from "../../assets/images/register.png"
 import userIcon from "../../assets/images/user.png"
 import { useState } from "react"
+import { registerUser } from "../../helpers/axiosHelper"
+import { toast } from "react-toastify"
+
+const initialState = {
+  username: "",
+  email: "",
+  password: "",
+}
 const Register = () => {
-  const [formData, setFormData] = useState({
-    username: undefined,
-    email: undefined,
-    password: undefined,
-  })
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState(initialState)
 
   const handleChange = (e) => {
     const { id, value } = e.target
@@ -20,8 +25,13 @@ const Register = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    const { status, message } = await registerUser(formData)
+    status === "success"
+      ? toast[status](message) && navigate("/login")
+      : toast[status](message)
+    setFormData(initialState)
   }
   return (
     <section>
@@ -47,6 +57,7 @@ const Register = () => {
                       required
                       id="username"
                       onChange={handleChange}
+                      value={formData.username}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -56,6 +67,7 @@ const Register = () => {
                       required
                       id="email"
                       onChange={handleChange}
+                      value={formData.email}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -65,10 +77,11 @@ const Register = () => {
                       required
                       id="password"
                       onChange={handleChange}
+                      value={formData.password}
                     />
                   </FormGroup>
                   <Button className="btn secondary-btn auth-btn" type="submit">
-                    Login
+                    Register
                   </Button>
                 </Form>
                 <p>

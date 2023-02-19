@@ -1,12 +1,15 @@
 import { useRef } from "react"
+import { useNavigate } from "react-router-dom"
 import { Col, Form, FormGroup } from "reactstrap"
+import { fetchSearchedTours } from "../../helpers/axiosHelper"
 import "./searchBar.scss"
 const SearchBar = () => {
+  const navigate = useNavigate()
   const locationRef = useRef("")
   const distanceRef = useRef(0)
   const peopleRef = useRef(0)
 
-  const searchHandler = (e) => {
+  const searchHandler = async (e) => {
     e.preventDefault()
     const location = locationRef.current.value
     const distance = distanceRef.current.value
@@ -14,6 +17,16 @@ const SearchBar = () => {
 
     if (location === "" || distance === "" || people === "") {
       return alert("All fields are required!")
+    }
+
+    const res = await fetchSearchedTours(location, distance, people)
+    console.log(res)
+
+    if (res.status === "success") {
+      navigate(
+        `/tours/search?city=${location}&distance=${distance}&maxGroupSize=${people}`,
+        { state: res.tours }
+      )
     }
   }
   return (

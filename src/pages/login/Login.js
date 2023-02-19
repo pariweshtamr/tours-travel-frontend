@@ -1,10 +1,23 @@
-import { Link } from "react-router-dom"
-import { Button, Col, Container, Form, FormGroup, Row } from "reactstrap"
+import { Link, useNavigate } from "react-router-dom"
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Row,
+  Spinner,
+} from "reactstrap"
 import "./login.scss"
 import loginImg from "../../assets/images/login.png"
 import userIcon from "../../assets/images/user.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { loginAction } from "../../redux/Auth/AuthAction"
 const Login = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { user, isLoading } = useSelector((state) => state.auth)
   const [formData, setFormData] = useState({
     email: undefined,
     password: undefined,
@@ -21,7 +34,12 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    dispatch(loginAction(formData))
   }
+
+  useEffect(() => {
+    user?._id && navigate("/")
+  }, [user, navigate])
   return (
     <section>
       <Container>
@@ -57,8 +75,12 @@ const Login = () => {
                       onChange={handleChange}
                     />
                   </FormGroup>
-                  <Button className="btn secondary-btn auth-btn" type="submit">
-                    Login
+                  <Button
+                    disabled={isLoading}
+                    className="btn secondary-btn auth-btn"
+                    type="submit"
+                  >
+                    {isLoading ? <Spinner type="grow" /> : "Login"}
                   </Button>
                 </Form>
                 <p>

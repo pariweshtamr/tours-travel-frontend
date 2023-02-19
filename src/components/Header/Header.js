@@ -2,7 +2,12 @@ import "./header.scss"
 import { Button, Container, Row } from "reactstrap"
 import logo from "../../assets/images/logo.png"
 import { Link, NavLink } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { logoutSuccess } from "../../redux/Auth/AuthSlice"
 const Header = () => {
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
+
   return (
     <header className="header">
       <Container>
@@ -53,12 +58,29 @@ const Header = () => {
 
             <div className="nav-right d-flex align-items-center gap-4">
               <div className="nav-btns d-flex align-items-center gap-4">
-                <Button className="btn secondary-btn">
-                  <Link to="/login">Login</Link>
-                </Button>
-                <Button className="btn primary-btn">
-                  <Link to="/register">Register</Link>
-                </Button>
+                {user?._id ? (
+                  <>
+                    <Button className="btn secondary-btn">
+                      {user?.username}
+                    </Button>
+                    <Button
+                      className="btn btn-dark rounded-5"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => dispatch(logoutSuccess())}
+                    >
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button className="btn secondary-btn">
+                      <Link to="/login">Login</Link>
+                    </Button>
+                    <Button className="btn primary-btn">
+                      <Link to="/register">Register</Link>
+                    </Button>
+                  </>
+                )}
               </div>
 
               <span className="mobile-menu">

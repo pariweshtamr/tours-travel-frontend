@@ -1,12 +1,20 @@
 import TourCard from "../TourCard/TourCard"
-import tourData from "../../assets/data/tours"
 import { Col } from "reactstrap"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getFeaturedToursAction } from "../../redux/Tours/TourAction"
 
 const FeaturedTours = () => {
+  const dispatch = useDispatch()
+  const { featuredTours } = useSelector((state) => state.tour)
+  useEffect(() => {
+    dispatch(getFeaturedToursAction())
+  }, [dispatch])
+
   return (
     <>
-      {tourData?.map((tour, i) => (
-        <Col lg={3} className="mb-4" key={tour.id}>
+      {featuredTours?.map((tour, i) => (
+        <Col lg={3} className="mb-4" key={tour._id}>
           <TourCard tour={tour} />
         </Col>
       ))}
