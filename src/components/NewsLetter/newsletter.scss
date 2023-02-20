@@ -1,3 +1,4 @@
+@import "../../mixins";
 .newsletter {
   // background: #cae5f4;
   background: var(--primary-color);
@@ -6,6 +7,10 @@
 
   .newsletter-img img {
     width: 100%;
+
+    @include tablet() {
+      display: none;
+    }
   }
 
   .newsletter-content {
@@ -14,6 +19,9 @@
     h2 {
       font-size: 2.5rem;
       margin-bottom: 2rem;
+      @include tablet() {
+        font-size: 1.5rem;
+      }
     }
 
     .newsletter-input {
@@ -43,6 +51,10 @@
     p {
       color: var(--heading-color);
       font-size: 1.1rem;
+
+      @include tablet() {
+        display: none;
+      }
     }
   }
 }

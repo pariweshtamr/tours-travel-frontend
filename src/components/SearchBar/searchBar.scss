@@ -1,20 +1,42 @@
+@import "../../mixins";
 .search-bar {
   padding: 0.5rem 1rem;
   border-radius: 50px;
   box-shadow: rgba(17, 12, 46, 0.15) 0 48px 100px 0;
   width: max-content;
   margin-top: 50px;
+  @include tablet() {
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+
+    form {
+      flex-wrap: wrap;
+    }
+  }
 
   .form-group {
+    @include tablet() {
+      width: 47%;
+    }
+    @include mobile() {
+      width: 100%;
+    }
     span {
       font-size: 1.8rem;
       color: var(--secondary-color);
+      @include mobile() {
+        font-size: 1.1rem;
+      }
     }
 
     input {
       border: none;
       font-size: 0.9rem;
       color: var(--heading-color);
+      @include mobile() {
+        font-size: 0.8rem;
+      }
 
       &:focus {
         outline: none;
@@ -23,6 +45,9 @@
 
     h6 {
       margin-bottom: 0;
+      @include mobile() {
+        font-size: 0.9rem;
+      }
     }
   }
 
@@ -38,5 +63,21 @@
     color: #fff;
     border-radius: 10px 5px 10px 5px;
     cursor: pointer;
+    @include mobile() {
+      margin: 0 auto;
+      width: 100%;
+
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3rem;
+        &::after {
+          content: "Search";
+          font-size: 1.2rem;
+          font-family: var(--font-name);
+        }
+      }
+    }
   }
 }

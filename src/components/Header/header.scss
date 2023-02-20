@@ -18,6 +18,9 @@
     @include tablet() {
       width: 20%;
     }
+    @include smallTablet() {
+      width: 40%;
+    }
   }
 
   .mobile-navigation {
@@ -27,9 +30,11 @@
     top: 0;
     left: 0;
     background: #0000007a;
+    transition: 0.5s ease;
 
     .mobile-menu-close {
       position: absolute;
+      color: var(--heading-color);
       right: 1rem;
       font-size: 2rem;
       z-index: 9999;
@@ -41,8 +46,7 @@
           content: "";
           width: 0;
           height: 3px;
-          background: #000;
-          color: #000;
+          background: var(--heading-color);
           position: absolute;
           bottom: -0.2rem;
           left: 0;
@@ -78,6 +82,11 @@
       z-index: 999;
       padding: 6rem 2rem;
       align-items: flex-start !important;
+      transition: 0.5s ease;
+
+      @include smallTablet() {
+        width: calc(100% - 50%);
+      }
 
       .nav-item {
         a {

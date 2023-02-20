@@ -8,6 +8,8 @@ import { registerUser } from "../../helpers/axiosHelper"
 import { toast } from "react-toastify"
 
 const initialState = {
+  fName: "",
+  lName: "",
   username: "",
   email: "",
   password: "",
@@ -50,6 +52,26 @@ const Register = () => {
                 <h2>Register</h2>
 
                 <Form onSubmit={handleSubmit}>
+                  <FormGroup>
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      required
+                      id="fName"
+                      onChange={handleChange}
+                      value={formData.fName}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      required
+                      id="lName"
+                      onChange={handleChange}
+                      value={formData.lName}
+                    />
+                  </FormGroup>
                   <FormGroup>
                     <input
                       type="text"

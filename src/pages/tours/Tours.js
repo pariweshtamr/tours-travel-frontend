@@ -18,7 +18,7 @@ const Tours = () => {
     dispatch(getToursAction(page))
     const pages = Math.ceil(tourCount / 8)
     setPageCount(pages)
-    window.scrollTo(0, 200)
+    window.scrollTo(0, 0)
   }, [dispatch, tourCount, page])
 
   return (
@@ -36,7 +36,7 @@ const Tours = () => {
           {!isLoading ? (
             <Row>
               {tours?.map((tour) => (
-                <Col lg={3} className="mb-4" key={tour.id}>
+                <Col lg={3} md={6} sm={6} className="mb-4" key={tour.id}>
                   <TourCard tour={tour} />
                 </Col>
               ))}

@@ -1,3 +1,4 @@
+@import "../../mixins";
 .tour-card {
   .card {
     border: none !important;
@@ -34,11 +35,17 @@
       color: var(--heading-color);
       font-weight: 500;
       font-size: 0.9rem;
+      @include mobile() {
+        font-size: 0.8rem;
+      }
     }
 
     .tour-rating {
       font-size: 0.9rem;
       color: var(--text-color);
+      @include mobile() {
+        font-size: 0.8rem;
+      }
     }
 
     i {
@@ -50,6 +57,10 @@
     margin-top: 1rem;
     font-size: 1.1rem;
     cursor: pointer;
+
+    @include mobile() {
+      font-size: 1rem;
+    }
 
     a {
       text-decoration: none;
@@ -77,11 +88,18 @@
       background: var(--secondary-color);
       cursor: pointer;
       padding: 0.2rem 0.5rem;
+      @include mobile() {
+        padding: 0.3rem 0.5rem;
+      }
 
       a {
         text-decoration: none;
         font-size: 0.9rem;
         color: #fff;
+
+        @include mobile() {
+          font-size: 0.8rem;
+        }
       }
     }
   }

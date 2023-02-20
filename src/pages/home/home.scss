@@ -1,3 +1,4 @@
+@import "../../mixins";
 .hero-content {
   padding-top: 3.5rem;
   .hero-subtitle img {
@@ -11,6 +12,13 @@
     margin-top: 1rem;
     margin-bottom: 2rem;
     color: var(--heading-color);
+
+    @include tablet() {
+      font-size: 2.7rem;
+    }
+    @include mobile() {
+      font-size: 1.8rem;
+    }
 
     .highlight {
       color: var(--secondary-color);
@@ -26,6 +34,10 @@
 
 .hero-img-box {
   padding-top: 2rem;
+
+  @include tablet() {
+    display: none;
+  }
   img,
   video {
     width: 100%;
@@ -36,6 +48,12 @@
   }
 }
 
+.hero-video-box {
+  @include tablet() {
+    display: block;
+  }
+}
+
 .services-subtitle {
   font-size: 2.2rem;
   font-weight: 500;
@@ -43,14 +61,26 @@
   font-family: var(--subtitle-font-name);
 }
 
-.service-title {
+.services-title {
   font-size: 2.5rem;
   font-weight: 500;
+  @include tablet() {
+    font-size: 2rem;
+  }
+  @include mobile() {
+    font-size: 1.5rem;
+  }
 }
 
 .featured-tour-title {
   font-size: 2.3rem;
   font-weight: 500;
+  @include tablet() {
+    font-size: 2rem;
+  }
+  @include mobile() {
+    font-size: 1.5rem;
+  }
 }
 
 .experience-content {
@@ -58,6 +88,12 @@
     font-size: 2.5rem;
     margin-top: 1rem;
     font-weight: 500;
+    @include tablet() {
+      font-size: 2rem;
+    }
+    @include mobile() {
+      font-size: 1.5rem;
+    }
   }
   p {
     font-size: 1.1rem;
@@ -92,8 +128,16 @@
 }
 
 .experience-img {
+  @include tablet() {
+    display: flex;
+    justify-content: center;
+  }
   img {
     width: 90%;
+
+    @include tablet() {
+      margin-top: 2rem;
+    }
   }
 }
 
@@ -101,6 +145,12 @@
   font-size: 2.3rem;
   margin-bottom: 2.5rem;
   margin-top: 1rem;
+  @include tablet() {
+    font-size: 2rem;
+  }
+  @include mobile() {
+    font-size: 1.5rem;
+  }
 }
 
 .masonry-img {
@@ -115,4 +165,10 @@
   margin-top: 1rem;
   font-size: 2.3rem;
   margin-bottom: 2rem;
+  @include tablet() {
+    font-size: 2rem;
+  }
+  @include mobile() {
+    font-size: 1.5rem;
+  }
 }

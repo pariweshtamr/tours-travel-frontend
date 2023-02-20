@@ -4,7 +4,7 @@ import logo from "../../assets/images/logo.png"
 import { Link, NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { logoutSuccess } from "../../redux/Auth/AuthSlice"
-import { useRef, useState } from "react"
+import { useState } from "react"
 const Header = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
@@ -17,7 +17,9 @@ const Header = () => {
           <div className="nav-wrapper d-flex align-items-center justify-content-between">
             {/* ======== logo start ========= */}
             <div className="logo">
-              <img src={logo} alt="logo" />
+              <Link to="/">
+                <img src={logo} alt="logo" />
+              </Link>
             </div>
             {/* ======== logo end ======== */}
 

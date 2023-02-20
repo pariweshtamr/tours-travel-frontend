@@ -1,3 +1,4 @@
+@import "../../mixins";
 .tour-content {
   img {
     width: 100%;
@@ -32,6 +33,18 @@
       column-gap: 2.7rem;
       margin-top: 1rem;
       margin-bottom: 2.5rem;
+
+      @include smallTablet() {
+        flex-wrap: wrap;
+        row-gap: 1rem;
+
+        span {
+          font-size: 0.9rem;
+          i {
+            font-size: 1rem;
+          }
+        }
+      }
     }
 
     h5 {

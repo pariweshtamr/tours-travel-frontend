@@ -20,7 +20,6 @@ const SearchBar = () => {
     }
 
     const res = await fetchSearchedTours(location, distance, people)
-    console.log(res)
 
     if (res.status === "success") {
       navigate(
