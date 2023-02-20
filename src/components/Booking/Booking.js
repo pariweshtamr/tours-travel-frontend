@@ -1,33 +1,49 @@
 import { useState } from "react"
+import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { Button, Form, FormGroup, ListGroup, ListGroupItem } from "reactstrap"
+import { toast } from "react-toastify"
 import "./booking.scss"
+import { createBooking } from "../../helpers/axiosHelper"
 
 const Booking = ({ tour, avgRating }) => {
   const navigate = useNavigate()
-  const { price, reviews } = tour
-  const [credentials, setCredentials] = useState({
-    userId: "01", // will be dynamic later
-    userEmail: "pariwesh071@gmail.com",
-    fullName: "Pariwesh Tamrakar",
-    phone: "0499999999",
-    guestSize: "1",
+  const { user } = useSelector((state) => state.auth)
+  const { price, reviews, title } = tour
+  const [booking, setBooking] = useState({
+    userId: user?._id,
+    userEmail: user?.email,
+    tourName: title,
+    fName: "",
+    lName: "",
+    phone: "",
+    guestSize: "",
     bookAt: "",
   })
 
   const handleChange = (e) => {
-    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }))
+    setBooking((prev) => ({ ...prev, [e.target.id]: e.target.value }))
   }
 
   // send data to server
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    navigate("/thank-you")
+    try {
+      if (!user || user === undefined || user === null) {
+        toast.error("Please login to book a tour!")
+      }
+      const { token } = user
+      const { status } = await createBooking({ booking, token })
+
+      status === "success" && navigate("/thank-you")
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   const serviceFee = 10
-  const totalAmount = +price * +credentials.guestSize + +serviceFee
+  const totalAmount = +price * +booking.guestSize + +serviceFee
   return (
     <div className="booking">
       <div className="booking-top d-flex align-items-center justify-content-between">
@@ -50,10 +66,21 @@ const Booking = ({ tour, avgRating }) => {
           <FormGroup>
             <input
               type="text"
-              placeholder="Full Name"
-              id="fullName"
+              placeholder="First Name"
+              id="fName"
               required
               onChange={handleChange}
+              value={booking.fName}
+            />
+          </FormGroup>
+          <FormGroup>
+            <input
+              type="text"
+              placeholder="Last Name"
+              id="lName"
+              required
+              onChange={handleChange}
+              value={booking.lName}
             />
           </FormGroup>
           <FormGroup>
@@ -63,16 +90,24 @@ const Booking = ({ tour, avgRating }) => {
               id="phone"
               required
               onChange={handleChange}
+              value={booking.phone}
             />
           </FormGroup>
           <FormGroup className="d-flex align-items-center gap-3">
-            <input type="date" id="bookAt" required onChange={handleChange} />
+            <input
+              type="date"
+              id="bookAt"
+              required
+              onChange={handleChange}
+              value={booking.bookAt}
+            />
             <input
               type="number"
               placeholder="Guest"
               id="guestSize"
               required
               onChange={handleChange}
+              value={booking.guestSize}
             />
           </FormGroup>
         </Form>
@@ -85,9 +120,9 @@ const Booking = ({ tour, avgRating }) => {
         <ListGroup>
           <ListGroupItem className="border-0 px-0">
             <h5 className="d-flex align-items-center gap-1">
-              ${price} <i className="ri-close-line"></i> 1 person
+              ${price} <i className="ri-close-line"></i> {booking.guestSize}
             </h5>
-            <span> ${price}</span>
+            <span> ${price * booking.guestSize}</span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0">
             <h5>Service charge</h5>

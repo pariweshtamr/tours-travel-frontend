@@ -4,9 +4,11 @@ import logo from "../../assets/images/logo.png"
 import { Link, NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { logoutSuccess } from "../../redux/Auth/AuthSlice"
+import { useRef, useState } from "react"
 const Header = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
+  const [show, setShow] = useState(false)
 
   return (
     <header className="header">
@@ -20,8 +22,15 @@ const Header = () => {
             {/* ======== logo end ======== */}
 
             {/* ======== menu start ======== */}
-            <div className="navigation">
-              <ul className="menu d-flex align-items-center gap-5">
+            <div className={!show ? "navigation" : "mobile-navigation"}>
+              <div className="mobile-menu-close" onClick={() => setShow(false)}>
+                <i className="ri-close-line"></i>
+              </div>
+              <ul
+                className={`${
+                  !show ? "menu" : "mobile-menu"
+                } d-flex align-items-center gap-5`}
+              >
                 <li className="nav-item">
                   <NavLink
                     to="/"
@@ -83,7 +92,7 @@ const Header = () => {
                 )}
               </div>
 
-              <span className="mobile-menu">
+              <span className="mobile-menu" onClick={() => setShow(true)}>
                 <i className="ri-menu-line"></i>
               </span>
             </div>

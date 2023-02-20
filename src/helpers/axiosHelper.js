@@ -8,6 +8,7 @@ const rootUrl =
 const authUrl = rootUrl + "/auth"
 const tourUrl = rootUrl + "/tour"
 const reviewUrl = rootUrl + "/review"
+const bookingUrl = rootUrl + "/booking"
 
 // AUTH
 export const registerUser = async (formData) => {
@@ -106,6 +107,24 @@ export const submitReview = async (reviewData) => {
   try {
     const { data } = await axios.post(`${reviewUrl}/${_id}`, reviewObj, {
       withCredentials: true,
+      headers: {
+        Authorization: token,
+      },
+    })
+    return data
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    }
+  }
+}
+
+// BOOKING
+export const createBooking = async (obj) => {
+  const { booking, token } = obj
+  try {
+    const { data } = await axios.post(bookingUrl, booking, {
       headers: {
         Authorization: token,
       },

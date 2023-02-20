@@ -1,3 +1,4 @@
+@import "../../mixins";
 .header {
   width: 100%;
   height: 80px;
@@ -14,9 +15,95 @@
 
   .logo img {
     width: 30%;
+    @include tablet() {
+      width: 20%;
+    }
+  }
+
+  .mobile-navigation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #0000007a;
+
+    .mobile-menu-close {
+      position: absolute;
+      right: 1rem;
+      font-size: 2rem;
+      z-index: 9999;
+      cursor: pointer;
+      transition: 0.5s ease;
+      i {
+        position: relative;
+        &::after {
+          content: "";
+          width: 0;
+          height: 3px;
+          background: #000;
+          color: #000;
+          position: absolute;
+          bottom: -0.2rem;
+          left: 0;
+        }
+      }
+
+      &:hover {
+        i {
+          position: relative;
+
+          &::after {
+            width: 2rem;
+            transition: 0.5s ease;
+          }
+        }
+      }
+      @include tablet() {
+        display: block;
+      }
+    }
+
+    .mobile-menu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: calc(100% - 75%);
+      height: 100%;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      line-height: 0.5rem;
+      z-index: 999;
+      padding: 6rem 2rem;
+      align-items: flex-start !important;
+
+      .nav-item {
+        a {
+          text-decoration: none;
+          color: var(--heading-color);
+          font-weight: 500;
+          font-size: 1.1rem;
+
+          &:hover {
+            color: inherit;
+          }
+          &.active-link {
+            color: var(--secondary-color);
+          }
+        }
+      }
+    }
   }
 
   .navigation {
+    @include tablet() {
+      display: none;
+    }
+    .mobile-menu-close {
+      display: none;
+    }
     .menu {
       margin-bottom: 0;
 
@@ -40,16 +127,10 @@
     font-size: 1.3rem;
     color: var(--heading-color);
     display: none;
-  }
 
-  // .sticky-header {
-  //   width: 100%;
-  //   height: 80px;
-  //   line-height: 80px;
-  //   background: #fff;
-  //   position: sticky;
-  //   top: 0;
-  //   left: 0;
-  //   box-shadow: 4px 3px 8px -3px #ddd;
-  // }
+    @include tablet() {
+      display: block;
+      cursor: pointer;
+    }
+  }
 }
