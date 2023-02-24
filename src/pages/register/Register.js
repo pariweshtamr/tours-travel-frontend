@@ -13,6 +13,7 @@ const initialState = {
   username: "",
   email: "",
   password: "",
+  confirmPassword: "",
 }
 const Register = () => {
   const navigate = useNavigate()
@@ -29,7 +30,18 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const { status, message } = await registerUser(formData)
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match!")
+      return
+    }
+
+    const { confirmPassword, ...rest } = formData
+    const { status, message } = await registerUser(rest)
+
+    if (status === 200) {
+      toast.error(message)
+      return
+    }
     status === "success"
       ? toast[status](message) && navigate("/login")
       : toast[status](message)
@@ -39,7 +51,7 @@ const Register = () => {
     <section>
       <Container>
         <Row>
-          <Col lg={8} className="m-auto">
+          <Col lg={10} className="m-auto">
             <div className="login-container d-flex justify-content-between">
               <div className="login-img">
                 <img src={regImg} alt="login-img" />
@@ -100,6 +112,16 @@ const Register = () => {
                       id="password"
                       onChange={handleChange}
                       value={formData.password}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <input
+                      type="password"
+                      placeholder="Confirm Password"
+                      required
+                      id="confirmPassword"
+                      onChange={handleChange}
+                      value={formData.confirmPassword}
                     />
                   </FormGroup>
                   <Button className="btn secondary-btn auth-btn" type="submit">

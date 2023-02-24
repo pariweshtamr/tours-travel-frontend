@@ -17,7 +17,7 @@ const TourDetails = () => {
   const reviewMsgRef = useRef("")
   const { user } = useSelector((state) => state.auth)
   const { selectedTour, isLoading } = useSelector((state) => state.tour)
-  const [tourRating, setTourRating] = useState(null)
+  const [tourRating, setTourRating] = useState(0)
   const [shouldFetch, setShouldFetch] = useState(true)
 
   useEffect(() => {
@@ -52,15 +52,25 @@ const TourDetails = () => {
     // call api to post to db
     if (!user || user === undefined || user === null) {
       toast.error("Please log in to give reviews!")
+      return
+    }
+
+    if (tourRating === null || tourRating === 0) {
+      toast.error("Please rate the tour between 1 star to 5 stars")
+      return
     }
     const reviewObj = {
       username: user?.username,
       reviewText,
       rating: tourRating,
     }
-    const { token } = user
+    const { accessJwt } = user
     try {
-      const { status, message } = await submitReview({ reviewObj, _id, token })
+      const { status, message } = await submitReview({
+        reviewObj,
+        _id,
+        accessJwt,
+      })
 
       status && toast[status](message)
       setShouldFetch(true)

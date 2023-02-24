@@ -6,6 +6,7 @@ const rootUrl =
     : "http://localhost:8000/api/v1"
 
 const authUrl = rootUrl + "/auth"
+const userUrl = rootUrl + "/user"
 const tourUrl = rootUrl + "/tour"
 const reviewUrl = rootUrl + "/review"
 const bookingUrl = rootUrl + "/booking"
@@ -35,10 +36,26 @@ export const loginUser = async (formData) => {
   }
 }
 
+export const updatePassword = async (obj) => {
+  const { formData } = obj
+  try {
+    const { data } = await axios.patch(userUrl + "update-password", formData, {
+      headers: {
+        Authorization: obj.accessJwt,
+      },
+    })
+    return data
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    }
+  }
+}
+
 // TOURS
 
 export const fetchAllTours = async (page) => {
-  console.log(page)
   try {
     const { data } = await axios.get(`${tourUrl}?page=${page}`)
     return data
@@ -102,14 +119,14 @@ export const fetchSearchedTours = async (location, distance, people) => {
 
 // REVIEWS
 export const submitReview = async (reviewData) => {
-  const { reviewObj, _id, token } = reviewData
+  const { reviewObj, _id, accessJwt } = reviewData
 
   try {
     const { data } = await axios.post(`${reviewUrl}/${_id}`, reviewObj, {
-      withCredentials: true,
       headers: {
-        Authorization: token,
+        Authorization: accessJwt,
       },
+      withCredentials: true,
     })
     return data
   } catch (error) {

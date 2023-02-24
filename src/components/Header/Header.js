@@ -72,7 +72,7 @@ const Header = () => {
                 {user?._id ? (
                   <>
                     <Button className="btn secondary-btn">
-                      {user?.username}
+                      <Link to="/profile">{user?.username}</Link>
                     </Button>
                     <Button
                       className="btn btn-dark rounded-5"

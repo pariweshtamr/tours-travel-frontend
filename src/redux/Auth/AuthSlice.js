@@ -6,6 +6,7 @@ const initialState = {
       ? JSON.parse(localStorage.getItem("user"))
       : null,
   isLoading: false,
+  isLoggedIn: false,
   error: null,
 }
 
@@ -18,6 +19,7 @@ const authSlice = createSlice({
     },
     loginSuccess: (state, { payload }) => {
       state.isLoading = false
+      state.isLoggedIn = true
       state.user = payload
       state.error = null
 
@@ -25,6 +27,7 @@ const authSlice = createSlice({
     },
     logoutSuccess: (state) => {
       state.isLoading = false
+      state.isLoggedIn = false
       state.user = null
       state.error = null
 
