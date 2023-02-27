@@ -1,13 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-  user:
-    localStorage.getItem("user") !== undefined
-      ? JSON.parse(localStorage.getItem("user"))
-      : null,
+  user: {},
   isLoading: false,
   isLoggedIn: false,
-  error: null,
+  error: {},
 }
 
 const authSlice = createSlice({
@@ -21,17 +18,17 @@ const authSlice = createSlice({
       state.isLoading = false
       state.isLoggedIn = true
       state.user = payload
-      state.error = null
-
-      localStorage.setItem("user", JSON.stringify(payload))
+      state.error = {}
     },
     logoutSuccess: (state) => {
       state.isLoading = false
       state.isLoggedIn = false
-      state.user = null
-      state.error = null
-
-      localStorage.removeItem("user")
+      state.user = {}
+      state.error = {}
+    },
+    autoLogin: (state, { payload }) => {
+      state.user = payload
+      state.isLoggedIn = true
     },
     requestFailed: (state, { payload }) => {
       state.isLoading = false
@@ -42,7 +39,12 @@ const authSlice = createSlice({
 
 const { reducer, actions } = authSlice
 
-export const { requestPending, requestFailed, loginSuccess, logoutSuccess } =
-  actions
+export const {
+  requestPending,
+  requestFailed,
+  loginSuccess,
+  logoutSuccess,
+  autoLogin,
+} = actions
 
 export default reducer

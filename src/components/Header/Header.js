@@ -10,6 +10,12 @@ const Header = () => {
   const { user } = useSelector((state) => state.auth)
   const [show, setShow] = useState(false)
 
+  const handleLogout = () => {
+    dispatch(logoutSuccess())
+    localStorage.removeItem("refreshJwt")
+    sessionStorage.removeItem("accessJwt")
+  }
+
   return (
     <header className="header">
       <Container>
@@ -77,7 +83,7 @@ const Header = () => {
                     <Button
                       className="btn btn-dark rounded-5"
                       style={{ cursor: "pointer" }}
-                      onClick={() => dispatch(logoutSuccess())}
+                      onClick={handleLogout}
                     >
                       Logout
                     </Button>

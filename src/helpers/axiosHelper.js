@@ -53,6 +53,32 @@ export const updatePassword = async (obj) => {
   }
 }
 
+export const getUser = async (accessJwt) => {
+  try {
+    const { data } = await axios.get(authUrl, {
+      headers: {
+        Authorization: accessJwt,
+      },
+    })
+    return data
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    }
+  }
+}
+
+export const requestNewAccessJwt = async (refreshJwt) => {
+  const { data } = await axios.get(authUrl + "/accessJwt", {
+    headers: {
+      Authorization: refreshJwt,
+    },
+  })
+
+  return data.accessJwt
+}
+
 // TOURS
 
 export const fetchAllTours = async (page) => {

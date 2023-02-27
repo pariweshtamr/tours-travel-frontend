@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Routes, Route, Navigate } from "react-router-dom"
 import NoPage from "../pages/404/NoPage.js"
 import Home from "../pages/home/Home.js"
@@ -8,10 +9,16 @@ import SearchResult from "../pages/searchResult/SearchResult"
 import ThankYou from "../pages/thankYou/ThankYou.js"
 import TourDetails from "../pages/tourDetails/TourDetails"
 import Tours from "../pages/tours/Tours"
-import UserProfile from "../pages/userProfile/UserProfile.js"
+import UserProfile from "../pages/userProfile/UserProfile"
+import { autoLoginAction } from "../redux/Auth/AuthAction"
 
 const Routers = () => {
-  const { isLoggedIn } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const { isLoggedIn, user } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    !user?._id && dispatch(autoLoginAction())
+  }, [user?._id, dispatch])
 
   const RequireAuth = ({ children }) => {
     return isLoggedIn ? children : <Navigate to="/" />
