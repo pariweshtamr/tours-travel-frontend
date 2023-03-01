@@ -10,6 +10,7 @@ const userUrl = rootUrl + "/user"
 const tourUrl = rootUrl + "/tour"
 const reviewUrl = rootUrl + "/review"
 const bookingUrl = rootUrl + "/booking"
+const paymentUrl = rootUrl + "/payment"
 
 // AUTH
 export const registerUser = async (formData) => {
@@ -37,11 +38,10 @@ export const loginUser = async (formData) => {
 }
 
 export const updatePassword = async (obj) => {
-  const { formData } = obj
   try {
-    const { data } = await axios.patch(userUrl + "update-password", formData, {
+    const { data } = await axios.patch(userUrl + "/update-password", obj, {
       headers: {
-        Authorization: obj.accessJwt,
+        Authorization: sessionStorage.getItem("accessJwt"),
       },
     })
     return data
@@ -165,13 +165,46 @@ export const submitReview = async (reviewData) => {
 
 // BOOKING
 export const createBooking = async (obj) => {
-  const { booking, token } = obj
   try {
-    const { data } = await axios.post(bookingUrl, booking, {
+    const { data } = await axios.post(bookingUrl, obj, {
       headers: {
-        Authorization: token,
+        Authorization: sessionStorage.getItem("accessJwt"),
       },
     })
+    return data
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    }
+  }
+}
+
+// STRIPE
+
+export const createCheckoutSession = async (obj) => {
+  try {
+    const { data } = await axios.post(
+      paymentUrl + "/create-checkout-session",
+      obj,
+      {
+        headers: {
+          Authorization: sessionStorage.getItem("accessJwt"),
+        },
+      }
+    )
+    return data
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    }
+  }
+}
+
+export const getStripeClientSecret = async (obj) => {
+  try {
+    const { data } = await axios.post(paymentUrl + "/create", obj)
     return data
   } catch (error) {
     return {

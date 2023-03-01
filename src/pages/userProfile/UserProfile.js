@@ -15,6 +15,8 @@ import avatar from "../../assets/images/avatar.jpg"
 import "./userProfile.scss"
 import CommonSection from "../../components/CommonSection/CommonSection"
 import { useState } from "react"
+import { updatePassword } from "../../helpers/axiosHelper"
+import { toast } from "react-toastify"
 const initialState = {
   currentPassword: "",
   password: "",
@@ -31,7 +33,20 @@ const UserProfile = () => {
     setFormData({ ...formData, [id]: value })
   }
 
-  const handleSubmit = () => {}
+  const handleSubmit = async () => {
+    const { currentPassword, password, confirmPassword } = formData
+
+    if (password !== confirmPassword) {
+      return toast.error("Passwords do not match!")
+    }
+    const { status, message } = await updatePassword({
+      currentPassword,
+      password,
+    })
+    status && toast[status](message)
+    setFormData(initialState)
+    setShow(false)
+  }
 
   return (
     <>
@@ -89,7 +104,7 @@ const UserProfile = () => {
             type="submit"
             onClick={handleSubmit}
           >
-            Edit Details
+            Update
           </Button>{" "}
           <Button
             className="rounded-5 py-2 bg-light text-dark"
@@ -152,7 +167,7 @@ const UserProfile = () => {
                 <button className="option-btn">Booked Tours</button>
                 <button className="option-btn">Reviews</button>
                 <button className="option-btn" onClick={() => setShow(true)}>
-                  Edit Profile
+                  Update Password
                 </button>
               </div>
             </div>

@@ -78,6 +78,7 @@ const TourDetails = () => {
       toast.error(error.message)
     }
   }
+
   return (
     <>
       <section>
@@ -142,19 +143,39 @@ const TourDetails = () => {
                     <Form onSubmit={handleSubmit}>
                       <div className="d-flex align-items-center gap-3 mb-4 rating-group">
                         <span onClick={() => setTourRating(1)}>
-                          <i className="ri-star-s-fill"></i>
+                          <i
+                            className={
+                              tourRating >= 1 ? "ri-star-fill" : "ri-star-line"
+                            }
+                          ></i>
                         </span>
                         <span onClick={() => setTourRating(2)}>
-                          <i className="ri-star-s-fill"></i>
+                          <i
+                            className={
+                              tourRating >= 2 ? "ri-star-fill" : "ri-star-line"
+                            }
+                          ></i>
                         </span>
                         <span onClick={() => setTourRating(3)}>
-                          <i className="ri-star-s-fill"></i>
+                          <i
+                            className={
+                              tourRating >= 3 ? "ri-star-fill" : "ri-star-line"
+                            }
+                          ></i>
                         </span>
                         <span onClick={() => setTourRating(4)}>
-                          <i className="ri-star-s-fill"></i>
+                          <i
+                            className={
+                              tourRating >= 4 ? "ri-star-fill" : "ri-star-line"
+                            }
+                          ></i>
                         </span>
                         <span onClick={() => setTourRating(5)}>
-                          <i className="ri-star-s-fill"></i>
+                          <i
+                            className={
+                              tourRating === 5 ? "ri-star-fill" : "ri-star-line"
+                            }
+                          ></i>
                         </span>
                       </div>
 
@@ -173,7 +194,6 @@ const TourDetails = () => {
                         </button>
                       </div>
                     </Form>
-
                     <ListGroup className="user-reviews">
                       {reviews?.map((review) => (
                         <div className="review-item" key={review._id}>
@@ -205,7 +225,6 @@ const TourDetails = () => {
                   {/* ====== tour reviews section end ====== */}
                 </div>
               </Col>
-
               <Col lg={4}>
                 <Booking tour={selectedTour} avgRating={avgRating} />
               </Col>

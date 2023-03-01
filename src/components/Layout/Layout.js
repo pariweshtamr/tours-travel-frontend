@@ -7,7 +7,7 @@ import Header from "../Header/Header"
 
 const Layout = () => {
   const dispatch = useDispatch()
-  const { user, isLoggedIn } = useSelector((state) => state.auth)
+  const { isLoggedIn } = useSelector((state) => state.auth)
 
   useEffect(() => {
     !isLoggedIn && dispatch(logoutSuccess())
