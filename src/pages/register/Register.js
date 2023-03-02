@@ -18,7 +18,26 @@ const initialState = {
 const Register = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState(initialState)
+  const [meter, setMeter] = useState(false)
 
+  const atLeastOneUpperCase = /[A-Z]/g // capital letters from A - Z
+  const atLeastOneLowerCase = /[a-z]/g // capital letters from a - z
+  const atleastOneNumeric = /[0-9]/g // numbers from 0 - 9
+  const atLeastOneSpecialChar = /[!@#$%^&*()_+?./-]/g // any of the special characters with the square brackets
+  const sevenCharsOrMore = /.{7,}/g // seven or more characters
+
+  const passwordTracker = {
+    uppercase: formData.password.match(atLeastOneUpperCase),
+    lowercase: formData.password.match(atLeastOneLowerCase),
+    numeric: formData.password.match(atleastOneNumeric),
+    specialChar: formData.password.match(atLeastOneSpecialChar),
+    sevenOrMoreChars: formData.password.match(sevenCharsOrMore),
+  }
+
+  const passwordStrength = Object.values(passwordTracker).filter(
+    (value) => value
+  ).length
+  console.log(passwordStrength)
   const handleChange = (e) => {
     const { id, value } = e.target
 
@@ -106,13 +125,43 @@ const Register = () => {
                   </FormGroup>
                   <FormGroup>
                     <input
+                      onKeyDown={() => setMeter(true)}
                       type="password"
                       placeholder="Password"
                       required
                       id="password"
                       onChange={handleChange}
                       value={formData.password}
+                      minLength={7}
                     />
+                    {meter && (
+                      <>
+                        <div className="password-strength-text mt-2">
+                          Password Strength:{" "}
+                          {passwordStrength === 1
+                            ? "Poor"
+                            : passwordStrength === 2
+                            ? "Fair"
+                            : passwordStrength === 3
+                            ? "Good"
+                            : passwordStrength === 4
+                            ? "Good"
+                            : "Excellent"}
+                        </div>
+                        <div className="password-strength-meter"></div>
+
+                        <div className="password-rules">
+                          {passwordStrength < 5 && "Must contain "}
+                          {!passwordTracker.uppercase && "uppercase, "}
+                          {!passwordTracker.lowercase && "lowercase, "}
+                          {!passwordTracker.specialChar &&
+                            "special character, "}
+                          {!passwordTracker.numeric && "number, "}
+                          {!passwordTracker.sevenOrMoreChars &&
+                            "seven character or more"}
+                        </div>
+                      </>
+                    )}
                   </FormGroup>
                   <FormGroup>
                     <input
@@ -136,6 +185,32 @@ const Register = () => {
           </Col>
         </Row>
       </Container>
+      <style jsx="true">
+        {`
+          .password-strength-meter {
+            height: 0.3rem;
+            background: lightgrey;
+            border-radius: 3px;
+            margin: 0.5rem 0;
+          }
+
+          .password-strength-meter::before {
+            content: "";
+            background-color: ${[
+              "red",
+              "yellow",
+              "#03a2cc",
+              "#03a2cc",
+              "#0ce052",
+            ][passwordStrength - 1] || ""};
+            height: 100%;
+            width: ${(passwordStrength / 5) * 100}%;
+            display: block;
+            border-radius: 3px;
+            transition: width 0.2s;
+          }
+        `}
+      </style>
     </section>
   )
 }
