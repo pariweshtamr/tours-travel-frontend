@@ -162,6 +162,22 @@ export const submitReview = async (reviewData) => {
   }
 }
 
+export const deleteReview = async (reviewId) => {
+  try {
+    const { data } = await axios.delete(`${reviewUrl}/${reviewId}`, {
+      headers: {
+        Authorization: sessionStorage.getItem("accessJwt"),
+      },
+    })
+    return data
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    }
+  }
+}
+
 // BOOKING
 export const createBooking = async (obj) => {
   try {

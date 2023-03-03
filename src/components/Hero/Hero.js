@@ -11,7 +11,7 @@ const Hero = () => {
           </h1>
           <p>
             discover new things in exploring the world & make your vaction
-            memorable to rememberf forever.
+            memorable to remember forever.
           </p>
           <div>
             <SearchBar />

@@ -17,7 +17,7 @@ import NewsLetter from "../../components/NewsLetter/NewsLetter"
 import { useDispatch, useSelector } from "react-redux"
 import { getSingleTourAction } from "../../redux/Tours/TourAction"
 import { toast } from "react-toastify"
-import { submitReview } from "../../helpers/axiosHelper"
+import { deleteReview, submitReview } from "../../helpers/axiosHelper"
 
 const TourDetails = () => {
   const dispatch = useDispatch()
@@ -87,6 +87,19 @@ const TourDetails = () => {
       setShouldFetch(true)
     } catch (error) {
       toast.error(error.message)
+    }
+  }
+
+  const deleteRev = async (reviewId) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete your review for this tour?"
+      )
+    ) {
+      const { status, message } = await deleteReview(reviewId)
+
+      status && toast[status](message)
+      setShouldFetch(true)
     }
   }
 
@@ -230,8 +243,17 @@ const TourDetails = () => {
                                 <i className="ri-star-s-fill"></i>
                               </span>
                             </div>
-
-                            <h6>{review.reviewText}</h6>
+                            <div className="d-flex align-items-center justify-content-between">
+                              <h6 className="mt-3">{review.reviewText}</h6>
+                              {user.username === review.username && (
+                                <div
+                                  className="delete-btn"
+                                  onClick={() => deleteRev(review._id)}
+                                >
+                                  <i className="ri-delete-bin-fill text-danger"></i>
+                                </div>
+                              )}
+                            </div>
                           </div>
                         </div>
                       ))}

@@ -124,6 +124,16 @@
         font-size: 1.1rem;
         color: var(--text-color);
       }
+      .delete-btn {
+        font-size: 1.5rem;
+        transition: 0.5s all;
+
+        &:hover {
+          cursor: pointer;
+          scale: 1.2;
+          transition: 0.3s all;
+        }
+      }
       span {
         font-weight: 500;
         i {
