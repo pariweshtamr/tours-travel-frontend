@@ -1,4 +1,4 @@
-import { Col, Container, Row, ListGroup, ListGroupItem } from "reactstrap"
+import { Col, Container, Row, ListGroup } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import logo from "../../assets/images/logo.png"
 import "./footer.scss"
@@ -74,9 +74,9 @@ const Footer = () => {
             <h5 className="footer-link-title">Discover</h5>
             <ListGroup className="footer-quick-links">
               {quickLinks.map((item, i) => (
-                <ListGroupItem key={i} className="ps-0 border-0">
+                <ListGroup.Item key={i} className="ps-0 border-0">
                   <Link to={item.path}>{item.display}</Link>
-                </ListGroupItem>
+                </ListGroup.Item>
               ))}
             </ListGroup>
           </Col>
@@ -84,16 +84,16 @@ const Footer = () => {
             <h5 className="footer-link-title">Quick Links</h5>
             <ListGroup className="footer-quick-links">
               {quickLinks2.map((item, i) => (
-                <ListGroupItem key={i} className="ps-0 border-0">
+                <ListGroup.Item key={i} className="ps-0 border-0">
                   <Link to={item.path}>{item.display}</Link>
-                </ListGroupItem>
+                </ListGroup.Item>
               ))}
             </ListGroup>
           </Col>
           <Col lg={3}>
             <h5 className="footer-link-title">Contact</h5>
             <ListGroup className="footer-quick-links">
-              <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-3">
+              <ListGroup.Item className="ps-0 border-0 d-flex align-items-center gap-3">
                 <h6 className="mb-0 d-flex align-items-center gap-2">
                   <span>
                     <i className="ri-map-pin-line"></i>
@@ -102,8 +102,8 @@ const Footer = () => {
                 </h6>
 
                 <p className="mb-0">Lorem, ipsum dolor</p>
-              </ListGroupItem>
-              <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-3">
+              </ListGroup.Item>
+              <ListGroup.Item className="ps-0 border-0 d-flex align-items-center gap-3">
                 <h6 className="mb-0 d-flex align-items-center gap-2">
                   <span>
                     <i className="ri-mail-line"></i>
@@ -112,8 +112,8 @@ const Footer = () => {
                 </h6>
 
                 <p className="mb-0">dev.pt@gmail.com</p>
-              </ListGroupItem>
-              <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-3">
+              </ListGroup.Item>
+              <ListGroup.Item className="ps-0 border-0 d-flex align-items-center gap-3">
                 <h6 className="mb-0 d-flex align-items-center gap-2">
                   <span>
                     <i className="ri-phone-line"></i>
@@ -122,7 +122,7 @@ const Footer = () => {
                 </h6>
 
                 <p className="mb-0">+61 499 999 999</p>
-              </ListGroupItem>
+              </ListGroup.Item>
             </ListGroup>
           </Col>
 

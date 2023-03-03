@@ -13,7 +13,7 @@ const Layout = () => {
     !isLoggedIn && dispatch(logoutSuccess())
   }, [isLoggedIn, dispatch])
   return (
-    <div>
+    <div className="layout">
       <Header />
       <Routers />
       <Footer />

@@ -145,14 +145,13 @@ export const fetchSearchedTours = async (location, distance, people) => {
 
 // REVIEWS
 export const submitReview = async (reviewData) => {
-  const { reviewObj, _id, accessJwt } = reviewData
+  const { reviewObj, _id } = reviewData
 
   try {
     const { data } = await axios.post(`${reviewUrl}/${_id}`, reviewObj, {
       headers: {
-        Authorization: accessJwt,
+        Authorization: sessionStorage.getItem("accessJwt"),
       },
-      withCredentials: true,
     })
     return data
   } catch (error) {

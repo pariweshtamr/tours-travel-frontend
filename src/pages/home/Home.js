@@ -1,5 +1,5 @@
-import { Col, Container, Row } from "reactstrap"
 import "./home.scss"
+import { Col, Container, Row } from "react-bootstrap"
 import heroImg from "../../assets/images/hero-img01.jpg"
 import heroImg2 from "../../assets/images/hero-img02.jpg"
 import heroVideo from "../../assets/images/hero-video.mp4"

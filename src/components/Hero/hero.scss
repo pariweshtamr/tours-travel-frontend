@@ -17,8 +17,8 @@
     align-items: center;
     h1 {
       font-size: 3rem;
-      @include tablet() {
-        font-size: 2rem;
+      @include laptop() {
+        font-size: 2.5rem;
       }
       @include mobile() {
         font-size: 1.5rem;
@@ -31,9 +31,8 @@
       padding: 1rem 25rem;
       letter-spacing: 2px;
       color: lightgray;
-      @include tablet() {
+      @include laptop() {
         padding: 1rem 10rem;
-        font-size: 0.7rem;
       }
       @include mobile() {
         padding: 1rem 2rem;

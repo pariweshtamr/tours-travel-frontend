@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import { useNavigate } from "react-router-dom"
-import { Col, Form, FormGroup } from "reactstrap"
+import { Col, Form } from "react-bootstrap"
 import { fetchSearchedTours } from "../../helpers/axiosHelper"
 import "./searchBar.scss"
 const SearchBar = () => {
@@ -35,7 +35,7 @@ const SearchBar = () => {
           className="d-flex align-items-center gap-4"
           onSubmit={searchHandler}
         >
-          <FormGroup className="d-flex align-items-center gap-3 form-group">
+          <Form.Group className="d-flex align-items-center gap-3 form-group">
             <span>
               <i className="ri-map-pin-line"></i>
             </span>
@@ -47,9 +47,9 @@ const SearchBar = () => {
                 ref={locationRef}
               />
             </div>
-          </FormGroup>
+          </Form.Group>
           <div className="form-group-fast"></div>
-          <FormGroup className="d-flex align-items-center gap-3 form-group">
+          <Form.Group className="d-flex align-items-center gap-3 form-group">
             <span>
               <i className="ri-map-pin-time-line"></i>
             </span>
@@ -61,9 +61,9 @@ const SearchBar = () => {
                 ref={distanceRef}
               />
             </div>
-          </FormGroup>
+          </Form.Group>
           <div className="form-group-fast"></div>
-          <FormGroup className="d-flex align-items-center gap-3 form-group">
+          <Form.Group className="d-flex align-items-center gap-3 form-group">
             <span>
               <i className="ri-group-line"></i>
             </span>
@@ -71,7 +71,7 @@ const SearchBar = () => {
               <h6>Max People</h6>
               <input type="number" placeholder="0" ref={peopleRef} />
             </div>
-          </FormGroup>
+          </Form.Group>
 
           <button className="search-icon" type="submit">
             <i className="ri-search-line"></i>

@@ -1,13 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Row,
-  Spinner,
-} from "reactstrap"
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap"
 import "./login.scss"
 import loginImg from "../../assets/images/login.png"
 import userIcon from "../../assets/images/user.png"
@@ -56,8 +48,11 @@ const Login = () => {
                 </div>
                 <h2>Login</h2>
 
-                <Form onSubmit={handleSubmit}>
-                  <FormGroup>
+                <Form
+                  onSubmit={handleSubmit}
+                  className="d-flex flex-column gap-3"
+                >
+                  <Form.Group>
                     <input
                       type="email"
                       placeholder="Email"
@@ -65,8 +60,8 @@ const Login = () => {
                       id="email"
                       onChange={handleChange}
                     />
-                  </FormGroup>
-                  <FormGroup>
+                  </Form.Group>
+                  <Form.Group>
                     <input
                       type="password"
                       placeholder="Password"
@@ -74,17 +69,17 @@ const Login = () => {
                       id="password"
                       onChange={handleChange}
                     />
-                  </FormGroup>
+                  </Form.Group>
                   <Button
                     disabled={isLoading}
                     className="btn secondary-btn auth-btn"
                     type="submit"
                   >
-                    {isLoading ? <Spinner type="grow" /> : "Login"}
+                    {isLoading ? <Spinner animation="grow" /> : "Login"}
                   </Button>
                 </Form>
                 <p>
-                  Don't have an account? <Link to="/register">Create</Link>
+                  Don't have an account? <Link to="/register">Register</Link>
                 </p>
               </div>
             </div>

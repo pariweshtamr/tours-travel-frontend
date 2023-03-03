@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
-import { Button, Form, FormGroup, ListGroup, ListGroupItem } from "reactstrap"
+import { Button, Form, FormGroup, ListGroup } from "react-bootstrap"
 import { toast } from "react-toastify"
 import "./booking.scss"
 import { createCheckoutSession } from "../../helpers/axiosHelper"
@@ -111,20 +111,20 @@ const Booking = ({ tour, avgRating }) => {
       {/* =========== booking bottom =========== */}
       <div className="booking-bottom">
         <ListGroup>
-          <ListGroupItem className="border-0 px-0">
+          <ListGroup.Item className="border-0 px-0">
             <h5 className="d-flex align-items-center gap-1">
               ${price} <i className="ri-close-line"></i> {booking.guestSize}
             </h5>
             <span> ${price * booking.guestSize}</span>
-          </ListGroupItem>
-          <ListGroupItem className="border-0 px-0">
+          </ListGroup.Item>
+          <ListGroup.Item className="border-0 px-0">
             <h5>Service charge</h5>
             <span> ${booking.serviceFee}</span>
-          </ListGroupItem>
-          <ListGroupItem className="border-0 px-0 total">
+          </ListGroup.Item>
+          <ListGroup.Item className="border-0 px-0 total">
             <h5>Total</h5>
             <span> ${totalAmount}</span>
-          </ListGroupItem>
+          </ListGroup.Item>
         </ListGroup>
         <Button
           disabled={!booking.name || !booking.bookAt || !booking.phone}

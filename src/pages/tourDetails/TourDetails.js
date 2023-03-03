@@ -1,5 +1,13 @@
 import "./tourDetails.scss"
-import { Col, Container, Form, ListGroup, Row, Spinner } from "reactstrap"
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  ListGroup,
+  Row,
+  Spinner,
+} from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import calculateAvgRating from "../../utils/avgRating"
 import avatar from "../../assets/images/avatar.jpg"
@@ -19,6 +27,7 @@ const TourDetails = () => {
   const { selectedTour, isLoading } = useSelector((state) => state.tour)
   const [tourRating, setTourRating] = useState(0)
   const [shouldFetch, setShouldFetch] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setShouldFetch(true)
@@ -59,18 +68,20 @@ const TourDetails = () => {
       toast.error("Please rate the tour between 1 star to 5 stars")
       return
     }
+
+    setLoading(true)
     const reviewObj = {
       username: user?.username,
       reviewText,
       rating: tourRating,
     }
-    const { accessJwt } = user
     try {
       const { status, message } = await submitReview({
         reviewObj,
         _id,
-        accessJwt,
       })
+
+      setLoading(false)
 
       status && toast[status](message)
       setShouldFetch(true)
@@ -85,7 +96,10 @@ const TourDetails = () => {
         <Container>
           {isLoading ? (
             <div className="text-center">
-              <Spinner type="grow" style={{ width: "5rem", height: "5rem" }} />
+              <Spinner
+                animation="grow"
+                style={{ width: "5rem", height: "5rem" }}
+              />
             </div>
           ) : (
             <Row>
@@ -186,12 +200,13 @@ const TourDetails = () => {
                           placeholder="Share your thoughts..."
                           required
                         />
-                        <button
+                        <Button
                           className="btn primary-btn text-light"
                           type="submit"
+                          disabled={!tourRating}
                         >
-                          Submit
-                        </button>
+                          {loading ? <Spinner animation="grow" /> : "Submit"}
+                        </Button>
                       </div>
                     </Form>
                     <ListGroup className="user-reviews">

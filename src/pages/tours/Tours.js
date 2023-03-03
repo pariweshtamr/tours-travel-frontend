@@ -2,7 +2,7 @@ import CommonSection from "../../components/CommonSection/CommonSection"
 import NewsLetter from "../../components/NewsLetter/NewsLetter"
 import SearchBar from "../../components/SearchBar/SearchBar"
 import TourCard from "../../components/TourCard/TourCard"
-import { Col, Container, Row, Spinner } from "reactstrap"
+import { Col, Container, Row, Spinner } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getToursAction } from "../../redux/Tours/TourAction"
@@ -58,7 +58,7 @@ const Tours = () => {
           ) : (
             <div className="text-center">
               <Spinner
-                type="grow"
+                animation="grow"
                 style={{
                   height: "5rem",
                   width: "5rem",

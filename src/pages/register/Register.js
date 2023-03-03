@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import { Button, Col, Container, Form, FormGroup, Row } from "reactstrap"
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap"
 import "../login/login.scss"
 import regImg from "../../assets/images/register.png"
 import userIcon from "../../assets/images/user.png"
@@ -19,6 +19,7 @@ const Register = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState(initialState)
   const [meter, setMeter] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const atLeastOneUpperCase = /[A-Z]/g // capital letters from A - Z
   const atLeastOneLowerCase = /[a-z]/g // capital letters from a - z
@@ -49,6 +50,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
     if (formData.password !== formData.confirmPassword) {
       return toast.error("Passwords do not match!")
     }
@@ -57,6 +59,8 @@ const Register = () => {
 
     const { confirmPassword, ...rest } = formData
     const { status, message } = await registerUser(rest)
+
+    setIsLoading(false)
 
     if (status === 200) {
       toast.error(message)
@@ -83,8 +87,11 @@ const Register = () => {
                 </div>
                 <h2>Register</h2>
 
-                <Form onSubmit={handleSubmit}>
-                  <FormGroup>
+                <Form
+                  onSubmit={handleSubmit}
+                  className="d-flex flex-column gap-3"
+                >
+                  <Form.Group>
                     <input
                       type="text"
                       placeholder="First Name"
@@ -93,8 +100,8 @@ const Register = () => {
                       onChange={handleChange}
                       value={formData.fName}
                     />
-                  </FormGroup>
-                  <FormGroup>
+                  </Form.Group>
+                  <Form.Group>
                     <input
                       type="text"
                       placeholder="Last Name"
@@ -103,8 +110,8 @@ const Register = () => {
                       onChange={handleChange}
                       value={formData.lName}
                     />
-                  </FormGroup>
-                  <FormGroup>
+                  </Form.Group>
+                  <Form.Group>
                     <input
                       type="text"
                       placeholder="Username"
@@ -113,8 +120,8 @@ const Register = () => {
                       onChange={handleChange}
                       value={formData.username}
                     />
-                  </FormGroup>
-                  <FormGroup>
+                  </Form.Group>
+                  <Form.Group>
                     <input
                       type="email"
                       placeholder="Email"
@@ -123,8 +130,8 @@ const Register = () => {
                       onChange={handleChange}
                       value={formData.email}
                     />
-                  </FormGroup>
-                  <FormGroup>
+                  </Form.Group>
+                  <Form.Group>
                     <input
                       onKeyDown={() => setMeter(true)}
                       type="password"
@@ -163,8 +170,8 @@ const Register = () => {
                         </div>
                       </>
                     )}
-                  </FormGroup>
-                  <FormGroup>
+                  </Form.Group>
+                  <Form.Group>
                     <input
                       type="password"
                       placeholder="Confirm Password"
@@ -173,9 +180,13 @@ const Register = () => {
                       onChange={handleChange}
                       value={formData.confirmPassword}
                     />
-                  </FormGroup>
-                  <Button className="btn secondary-btn auth-btn" type="submit">
-                    Register
+                  </Form.Group>
+                  <Button
+                    className="btn secondary-btn auth-btn"
+                    type="submit"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? <Spinner animation="grow" /> : "Register"}
                   </Button>
                 </Form>
                 <p>

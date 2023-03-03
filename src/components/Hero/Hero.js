@@ -1,4 +1,4 @@
-import { Container } from "reactstrap"
+import { Container } from "react-bootstrap"
 import SearchBar from "../SearchBar/SearchBar"
 import "./hero.scss"
 const Hero = () => {

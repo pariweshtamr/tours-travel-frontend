@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "reactstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import maleTourist from "../../assets/images/male-tourist.png"
 import "./newsletter.scss"
 const NewsLetter = () => {

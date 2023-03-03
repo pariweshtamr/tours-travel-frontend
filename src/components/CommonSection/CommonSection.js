@@ -1,5 +1,5 @@
 import "./commonSection.scss"
-import { Col, Container, Row } from "reactstrap"
+import { Col, Container, Row } from "react-bootstrap"
 
 const CommonSection = ({ title }) => {
   return (

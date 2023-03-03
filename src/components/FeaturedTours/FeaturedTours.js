@@ -1,5 +1,5 @@
 import TourCard from "../TourCard/TourCard"
-import { Col } from "reactstrap"
+import { Col } from "react-bootstrap"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFeaturedToursAction } from "../../redux/Tours/TourAction"

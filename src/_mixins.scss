@@ -1,3 +1,9 @@
+@mixin laptop() {
+  @media only screen and (min-width: 992px) and (max-width: 1200px) {
+    @content;
+  }
+}
+
 @mixin tablet() {
   @media only screen and (max-width: 992px) {
     @content;

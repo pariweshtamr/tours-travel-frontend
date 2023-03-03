@@ -1,4 +1,4 @@
-import { Card, CardBody } from "reactstrap"
+import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import "./tourCard.scss"
 import calculateAvgRating from "../../utils/avgRating"
@@ -15,7 +15,7 @@ const TourCard = ({ tour }) => {
           {featured && <span>Featured</span>}
         </div>
 
-        <CardBody>
+        <Card.Body>
           <div className="card-top d-flex align-items-center justify-content-between">
             <span className="tour-location d-flex align-items-center gap-1">
               <i className="ri-map-pin-line"></i> {city}
@@ -43,7 +43,7 @@ const TourCard = ({ tour }) => {
               ${price} <span> / person</span>
             </h5>
           </div>
-        </CardBody>
+        </Card.Body>
       </Card>
     </div>
   )

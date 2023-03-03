@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "reactstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import CommonSection from "../../components/CommonSection/CommonSection"
 import { useLocation } from "react-router-dom"
 import { useState } from "react"

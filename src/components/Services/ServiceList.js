@@ -3,7 +3,7 @@ import "./serviceList.scss"
 import weatherImg from "../../assets/images/weather.png"
 import guideImg from "../../assets/images/guide.png"
 import customImg from "../../assets/images/customization.png"
-import { Col } from "reactstrap"
+import { Col } from "react-bootstrap"
 
 const servicesData = [
   {

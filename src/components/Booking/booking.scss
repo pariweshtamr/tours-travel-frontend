@@ -32,6 +32,9 @@
     }
 
     .booking-info-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       padding: 1.5rem;
       border: 1px solid rgb(229, 231, 235);
 
@@ -50,9 +53,8 @@
 
   .booking-bottom {
     margin-top: 1rem;
-    li {
+    div {
       display: flex;
-      align-items: center;
       justify-content: space-between;
 
       h5,

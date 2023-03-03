@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Button, Col, Container, Row } from "reactstrap"
+import { Button, Col, Container, Row } from "react-bootstrap"
 import "./thankyou.scss"
 const ThankYou = () => {
   return (

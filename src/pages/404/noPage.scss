@@ -1,0 +1,31 @@
+.no-page {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  .no-page-text {
+    position: absolute;
+    padding-right: 20rem;
+
+    h1 {
+      font-size: 6rem;
+      color: var(--secondary-color);
+    }
+
+    p {
+      &:nth-child(3) {
+        color: var(--text-color);
+        padding-right: 5rem;
+        margin-top: 5rem;
+      }
+      &:nth-child(2) {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+  img {
+    margin: 3rem 0 0 18rem;
+    height: 80vh;
+    width: auto;
+  }
+}
