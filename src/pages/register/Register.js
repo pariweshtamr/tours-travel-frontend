@@ -37,7 +37,7 @@ const Register = () => {
   const passwordStrength = Object.values(passwordTracker).filter(
     (value) => value
   ).length
-  console.log(passwordStrength)
+
   const handleChange = (e) => {
     const { id, value } = e.target
 
@@ -50,9 +50,10 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (formData.password !== formData.confirmPassword) {
-      toast.error("Passwords do not match!")
-      return
+      return toast.error("Passwords do not match!")
     }
+
+    if (passwordStrength !== 5) return
 
     const { confirmPassword, ...rest } = formData
     const { status, message } = await registerUser(rest)

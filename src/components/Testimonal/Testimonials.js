@@ -2,6 +2,7 @@ import Slider from "react-slick"
 import ava1 from "../../assets/images/ava-1.jpg"
 import ava2 from "../../assets/images/ava-2.jpg"
 import ava3 from "../../assets/images/ava-3.jpg"
+import "./testimonial.scss"
 const Testimonials = () => {
   const settings = {
     dots: true,
@@ -33,8 +34,8 @@ const Testimonials = () => {
   }
 
   return (
-    <Slider {...settings}>
-      <div className="testimonial py- 4 px-3">
+    <Slider {...settings} className="testimonial-slider">
+      <div className="testimonial">
         <p className="text-secondary">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas ipsum
           repudiandae ad aliquid. Repudiandae consequuntur reprehenderit
@@ -50,7 +51,7 @@ const Testimonials = () => {
           </div>
         </div>
       </div>
-      <div className="testimonial py- 4 px-3">
+      <div className="testimonial">
         <p className="text-secondary">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas ipsum
           repudiandae ad aliquid. Repudiandae consequuntur reprehenderit
@@ -66,7 +67,7 @@ const Testimonials = () => {
           </div>
         </div>
       </div>
-      <div className="testimonial py- 4 px-3">
+      <div className="testimonial">
         <p className="text-secondary">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas ipsum
           repudiandae ad aliquid. Repudiandae consequuntur reprehenderit
@@ -82,7 +83,7 @@ const Testimonials = () => {
           </div>
         </div>
       </div>
-      <div className="testimonial py- 4 px-3">
+      <div className="testimonial">
         <p className="text-secondary">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas ipsum
           repudiandae ad aliquid. Repudiandae consequuntur reprehenderit

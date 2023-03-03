@@ -1,0 +1,44 @@
+@import "../../mixins";
+
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2)),
+    url("../../assets//images//hero-bg.jpeg") center center no-repeat;
+  max-width: 1600px;
+  background-size: cover;
+  margin: auto;
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-size: 3rem;
+      @include tablet() {
+        font-size: 2rem;
+      }
+      @include mobile() {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    p {
+      text-align: center;
+      padding: 1rem 25rem;
+      letter-spacing: 2px;
+      color: lightgray;
+      @include tablet() {
+        padding: 1rem 10rem;
+        font-size: 0.7rem;
+      }
+      @include mobile() {
+        padding: 1rem 2rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

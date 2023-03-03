@@ -35,7 +35,7 @@ const SearchBar = () => {
           className="d-flex align-items-center gap-4"
           onSubmit={searchHandler}
         >
-          <FormGroup className="d-flex align-items-center gap-3 form-group form-group-fast">
+          <FormGroup className="d-flex align-items-center gap-3 form-group">
             <span>
               <i className="ri-map-pin-line"></i>
             </span>
@@ -48,7 +48,8 @@ const SearchBar = () => {
               />
             </div>
           </FormGroup>
-          <FormGroup className="d-flex align-items-center gap-3 form-group form-group-fast">
+          <div className="form-group-fast"></div>
+          <FormGroup className="d-flex align-items-center gap-3 form-group">
             <span>
               <i className="ri-map-pin-time-line"></i>
             </span>
@@ -61,6 +62,7 @@ const SearchBar = () => {
               />
             </div>
           </FormGroup>
+          <div className="form-group-fast"></div>
           <FormGroup className="d-flex align-items-center gap-3 form-group">
             <span>
               <i className="ri-group-line"></i>

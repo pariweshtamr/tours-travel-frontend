@@ -36,12 +36,12 @@ const TourCard = ({ tour }) => {
           </h5>
 
           <div className="card-bottom d-flex align-items-center justify-content-between mt-3">
-            <h5>
-              ${price} <span> / person</span>
-            </h5>
             <button className="btn booking-btn">
               <Link to={`/tours/${_id}`}>Book Now</Link>
             </button>
+            <h5>
+              ${price} <span> / person</span>
+            </h5>
           </div>
         </CardBody>
       </Card>

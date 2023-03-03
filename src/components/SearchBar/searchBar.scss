@@ -1,10 +1,11 @@
 @import "../../mixins";
 .search-bar {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   border-radius: 50px;
   box-shadow: rgba(17, 12, 46, 0.15) 0 48px 100px 0;
   width: max-content;
   margin-top: 50px;
+  background: #fff;
   @include tablet() {
     width: 100%;
     padding: 1rem 2rem;
@@ -23,36 +24,43 @@
       width: 100%;
     }
     span {
+      margin-top: 7px;
       font-size: 1.8rem;
       color: var(--secondary-color);
       @include mobile() {
         font-size: 1.1rem;
       }
     }
-
-    input {
-      border: none;
-      font-size: 0.9rem;
-      color: var(--heading-color);
-      @include mobile() {
-        font-size: 0.8rem;
-      }
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    h6 {
-      margin-bottom: 0;
-      @include mobile() {
+    div {
+      input {
+        border: none;
         font-size: 0.9rem;
+        color: var(--heading-color);
+        @include mobile() {
+          font-size: 0.8rem;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      h6 {
+        margin-bottom: 0;
+        @include mobile() {
+          font-size: 0.9rem;
+        }
       }
     }
   }
 
   .form-group-fast {
-    border-right: 2px solid #ddd;
+    width: 2px;
+    height: 2.5rem;
+    background: #ddd;
+    @include tablet() {
+      display: none;
+    }
   }
 
   .search-icon {
@@ -63,7 +71,7 @@
     color: #fff;
     border-radius: 10px 5px 10px 5px;
     cursor: pointer;
-    @include mobile() {
+    @include tablet() {
       margin: 0 auto;
       width: 100%;
 

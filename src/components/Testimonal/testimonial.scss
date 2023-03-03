@@ -1,0 +1,15 @@
+@import "../../mixins";
+.testimonial {
+  padding: 0 1rem;
+  overflow-x: hidden;
+
+  @include mobile() {
+    padding: 0;
+  }
+}
+
+.testimonial-slider {
+  @include tablet() {
+    overflow: hidden;
+  }
+}

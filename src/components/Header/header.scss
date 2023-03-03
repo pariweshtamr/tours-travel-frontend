@@ -13,6 +13,11 @@
   z-index: 999;
   top: 0;
 
+  @include smallTablet() {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   .logo img {
     width: 30%;
     @include tablet() {

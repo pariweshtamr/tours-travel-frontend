@@ -2,8 +2,8 @@
 .hero-content {
   padding-top: 3.5rem;
   .hero-subtitle img {
-    width: 2.3rem;
-    height: 2.3rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
   h1 {
@@ -34,6 +34,12 @@
 
 .hero-img-box {
   padding-top: 2rem;
+  transition: 0.5s all;
+
+  &:hover {
+    transition: 0.5s all;
+    scale: 1.05;
+  }
 
   @include tablet() {
     display: none;
@@ -127,16 +133,28 @@
   }
 }
 
-.experience-img {
+.experience-imgs {
+  position: relative;
+
   @include tablet() {
     display: flex;
     justify-content: center;
   }
   img {
-    width: 90%;
+    width: 55%;
+    border-radius: 20px;
 
     @include tablet() {
       margin-top: 2rem;
+    }
+
+    &:nth-child(1) {
+      position: absolute;
+      width: 60%;
+      height: 90%;
+      left: 35%;
+      top: 25%;
+      border: 5px solid #fff;
     }
   }
 }

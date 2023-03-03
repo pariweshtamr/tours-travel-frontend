@@ -4,18 +4,25 @@ import heroImg from "../../assets/images/hero-img01.jpg"
 import heroImg2 from "../../assets/images/hero-img02.jpg"
 import heroVideo from "../../assets/images/hero-video.mp4"
 import worldImg from "../../assets/images/world.png"
-import experienceImg from "../../assets/images/experience.png"
+import experienceImg from "../../assets/images/exp-img.jpeg"
+import experienceImg2 from "../../assets/images/exp-img2.jpeg"
 import Subtitle from "../../components/Subtitle/Subtitle"
-import SearchBar from "../../components/SearchBar/SearchBar"
 import ServiceList from "../../components/Services/ServiceList"
 import FeaturedTours from "../../components/FeaturedTours/FeaturedTours"
 import MasonryImagesGallery from "../../components/ImageGallery/MasonryImagesGallery"
 import Testimonials from "../../components/Testimonal/Testimonials"
 import NewsLetter from "../../components/NewsLetter/NewsLetter"
+import Hero from "../../components/Hero/Hero"
 
 const Home = () => {
   return (
     <>
+      <div>
+        <Hero />
+      </div>
+
+      {/* ======== Hero2 section start ========= */}
+
       <section>
         <Container>
           <Row>
@@ -40,26 +47,27 @@ const Home = () => {
             </Col>
 
             <Col lg={2}>
-              <div className="hero-img-box">
+              <div className="hero-img-box mt-4">
                 <img src={heroImg} alt="hero-img" />
               </div>
             </Col>
             <Col lg={2}>
-              <div className="hero-img-box hero-video-box mt-4">
+              <div className="hero-img-box hero-video-box">
                 <video src={heroVideo} alt="hero-video" controls />
               </div>
             </Col>
             <Col lg={2}>
-              <div className="hero-img-box mt-5">
+              <div className="hero-img-box mt-4">
                 <img src={heroImg2} alt="hero-img" />
               </div>
             </Col>
 
-            <SearchBar />
+            {/* <SearchBar /> */}
           </Row>
         </Container>
       </section>
-      {/* ======== Hero section start ========= */}
+      {/* ======== Hero2 section end ========= */}
+      {/* ======== Services section start ========= */}
       <section>
         <Container>
           <Row>
@@ -71,7 +79,7 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-      {/* ========= Hero section end ======== */}
+      {/* ========= Services section end ======== */}
 
       {/* ========= Featured tour section start ======== */}
       <section>
@@ -88,7 +96,7 @@ const Home = () => {
       {/* ========= Featured tour section end ======== */}
 
       {/* ========= Experience section start ======== */}
-      <section>
+      <section className="mb-5">
         <Container>
           <Row>
             <Col lg={6}>
@@ -121,8 +129,9 @@ const Home = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="experience-img">
+              <div className="experience-imgs">
                 <img src={experienceImg} alt="experience-img" />
+                <img src={experienceImg2} alt="experience-img2" />
               </div>
             </Col>
           </Row>
