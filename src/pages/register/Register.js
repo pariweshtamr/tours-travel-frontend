@@ -50,13 +50,12 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsLoading(true)
     if (formData.password !== formData.confirmPassword) {
       return toast.error("Passwords do not match!")
     }
 
     if (passwordStrength !== 5) return
-
+    setIsLoading(true)
     const { confirmPassword, ...rest } = formData
     const { status, message } = await registerUser(rest)
 

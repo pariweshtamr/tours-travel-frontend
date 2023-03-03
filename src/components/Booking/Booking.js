@@ -18,10 +18,9 @@ const Booking = ({ tour, avgRating }) => {
     phone: "",
     guestSize: 1,
     bookAt: "",
-    serviceFee: 10,
     tourId: tour?._id,
   })
-  const totalAmount = +price * +booking.guestSize + +booking.serviceFee
+  const totalAmount = +price * +booking.guestSize
 
   const handleChange = (e) => {
     setBooking((prev) => ({ ...prev, [e.target.id]: e.target.value }))
@@ -117,10 +116,10 @@ const Booking = ({ tour, avgRating }) => {
             </h5>
             <span> ${price * booking.guestSize}</span>
           </ListGroup.Item>
-          <ListGroup.Item className="border-0 px-0">
+          {/* <ListGroup.Item className="border-0 px-0">
             <h5>Service charge</h5>
             <span> ${booking.serviceFee}</span>
-          </ListGroup.Item>
+          </ListGroup.Item> */}
           <ListGroup.Item className="border-0 px-0 total">
             <h5>Total</h5>
             <span> ${totalAmount}</span>
