@@ -33,6 +33,7 @@ const UserProfile = () => {
   const [formData, setFormData] = useState(initialState)
   const [show, setShow] = useState(false)
   const [meter, setMeter] = useState(false)
+  const [reveal, setReveal] = useState(false)
 
   const atLeastOneUpperCase = /[A-Z]/g // capital letters from A - Z
   const atLeastOneLowerCase = /[a-z]/g // capital letters from a - z
@@ -120,17 +121,29 @@ const UserProfile = () => {
             </FormGroup>
             <FormGroup className="d-flex flex-column gap-1 mb-3">
               <label htmlFor="password">New Password</label>
-              <div>
+              <div className="pw-input">
                 <input
                   onKeyDown={() => setMeter(true)}
-                  type="password"
+                  type={reveal ? "text" : "password"}
                   className="profile-input"
                   placeholder="********"
                   id="password"
                   onChange={handleChange}
                   value={formData.password}
                   minLength={7}
+                  style={{ width: "100%" }}
                 />
+                {!reveal ? (
+                  <i
+                    className="ri-eye-line show-pw"
+                    onClick={() => setReveal(true)}
+                  ></i>
+                ) : (
+                  <i
+                    className="ri-eye-off-line show-pw"
+                    onClick={() => setReveal(false)}
+                  ></i>
+                )}
               </div>
               {meter && (
                 <>
@@ -144,7 +157,9 @@ const UserProfile = () => {
                       ? "Good"
                       : passwordStrength === 4
                       ? "Good"
-                      : "Excellent"}
+                      : passwordStrength === 5
+                      ? "Excellent"
+                      : ""}
                   </div>
                   <div className="password-strength-meter"></div>
 

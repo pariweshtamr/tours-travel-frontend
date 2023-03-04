@@ -20,6 +20,7 @@ const Register = () => {
   const [formData, setFormData] = useState(initialState)
   const [meter, setMeter] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [reveal, setReveal] = useState(false)
 
   const atLeastOneUpperCase = /[A-Z]/g // capital letters from A - Z
   const atLeastOneLowerCase = /[a-z]/g // capital letters from a - z
@@ -131,16 +132,30 @@ const Register = () => {
                     />
                   </Form.Group>
                   <Form.Group>
-                    <input
-                      onKeyDown={() => setMeter(true)}
-                      type="password"
-                      placeholder="Password"
-                      required
-                      id="password"
-                      onChange={handleChange}
-                      value={formData.password}
-                      minLength={7}
-                    />
+                    <div className="pw-input">
+                      <input
+                        onKeyDown={() => setMeter(true)}
+                        type={reveal ? "text" : "password"}
+                        placeholder="Password"
+                        required
+                        id="password"
+                        onChange={handleChange}
+                        value={formData.password}
+                        minLength={7}
+                        style={{ width: "100%" }}
+                      />
+                      {!reveal ? (
+                        <i
+                          className="ri-eye-line show-pw"
+                          onClick={() => setReveal(true)}
+                        ></i>
+                      ) : (
+                        <i
+                          className="ri-eye-off-line show-pw"
+                          onClick={() => setReveal(false)}
+                        ></i>
+                      )}
+                    </div>
                     {meter && (
                       <>
                         <div className="password-strength-text mt-2">
@@ -153,7 +168,9 @@ const Register = () => {
                             ? "Good"
                             : passwordStrength === 4
                             ? "Good"
-                            : "Excellent"}
+                            : passwordStrength === 5
+                            ? "Excellent"
+                            : ""}
                         </div>
                         <div className="password-strength-meter"></div>
 

@@ -68,6 +68,17 @@
   border: none;
   border-bottom: 1px solid #000;
 }
+.pw-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .show-pw {
+    position: absolute;
+    right: 0.5rem;
+    cursor: pointer;
+  }
+}
 
 .booking-table-head {
   font-weight: bold;

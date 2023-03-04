@@ -10,6 +10,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { user, isLoading } = useSelector((state) => state.auth)
+  const [reveal, setReveal] = useState(false)
   const [formData, setFormData] = useState({
     email: undefined,
     password: undefined,
@@ -62,13 +63,26 @@ const Login = () => {
                     />
                   </Form.Group>
                   <Form.Group>
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      required
-                      id="password"
-                      onChange={handleChange}
-                    />
+                    <div className="pw-input">
+                      <input
+                        type={reveal ? "text" : "password"}
+                        placeholder="Password"
+                        required
+                        id="password"
+                        onChange={handleChange}
+                      />
+                      {!reveal ? (
+                        <i
+                          className="ri-eye-line show-pw"
+                          onClick={() => setReveal(true)}
+                        ></i>
+                      ) : (
+                        <i
+                          className="ri-eye-off-line show-pw"
+                          onClick={() => setReveal(false)}
+                        ></i>
+                      )}
+                    </div>
                   </Form.Group>
                   <Button
                     disabled={isLoading}
