@@ -1,13 +1,14 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
-import { Button, Form, FormGroup, ListGroup } from "react-bootstrap"
+import { Button, Form, FormGroup, ListGroup, Spinner } from "react-bootstrap"
 import { toast } from "react-toastify"
 import "./booking.scss"
 import { createCheckoutSession } from "../../helpers/axiosHelper"
 
 const Booking = ({ tour, avgRating }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const { user } = useSelector((state) => state.auth)
-  const { price, reviews, title } = tour
+  const { price, reviews, title, maxGroupSize } = tour
 
   const [booking, setBooking] = useState({
     userId: user?._id,
@@ -32,10 +33,20 @@ const Booking = ({ tour, avgRating }) => {
     e.preventDefault()
     try {
       if (!user || user === undefined || user === null) {
-        toast.error("Please login to book a tour!")
+        return toast.error("Please login to book a tour!")
       }
 
+      if (booking.guestSize > maxGroupSize) {
+        return toast.error(
+          `The number of guests exceeds the maximum number of guests for this tour!`
+        )
+      }
+      setIsLoading(true)
+
       const session = await createCheckoutSession(booking)
+
+      setIsLoading(false)
+
       if (session?.url) {
         window.location.href = session.url
       }
@@ -127,10 +138,14 @@ const Booking = ({ tour, avgRating }) => {
         </ListGroup>
         <Button
           disabled={!booking.name || !booking.bookAt || !booking.phone}
-          className="btn primary-btn w-100 mt-4"
+          className="btn primary-btn w-100 mt-4 d-flex justify-content-center"
           onClick={handleSubmit}
         >
-          Book Now
+          {isLoading ? (
+            <Spinner animation="grow" variant="light" />
+          ) : (
+            "Book Now"
+          )}
         </Button>
       </div>
       {/* =========== booking bottom end =========== */}

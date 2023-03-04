@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
   Col,
   Container,
@@ -10,20 +10,26 @@ import {
   ModalFooter,
   Form,
   FormGroup,
+  Accordion,
+  Table,
+  Spinner,
 } from "react-bootstrap"
 import avatar from "../../assets/images/avatar.jpg"
 import "./userProfile.scss"
 import CommonSection from "../../components/CommonSection/CommonSection"
-import { useState } from "react"
-import { updatePassword } from "../../helpers/axiosHelper"
+import { useEffect, useState } from "react"
+import { getRefundForBooking, updatePassword } from "../../helpers/axiosHelper"
 import { toast } from "react-toastify"
+import { getUserBookingAction } from "../../redux/Booking/BookingAction"
 const initialState = {
   currentPassword: "",
   password: "",
   confirmPassword: "",
 }
 const UserProfile = () => {
+  const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
+  const { bookings, isLoading } = useSelector((state) => state.booking)
   const [formData, setFormData] = useState(initialState)
   const [show, setShow] = useState(false)
   const [meter, setMeter] = useState(false)
@@ -68,6 +74,24 @@ const UserProfile = () => {
     setFormData(initialState)
     setShow(false)
   }
+
+  const handleBookingCancel = async (bookingInfo) => {
+    if (window.confirm("Are you sure you want to cancel this booking?")) {
+      try {
+        const { status, message } = await getRefundForBooking(bookingInfo)
+        if (status === "success") {
+          toast[status](message)
+          dispatch(getUserBookingAction())
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  useEffect(() => {
+    dispatch(getUserBookingAction())
+  }, [dispatch])
 
   return (
     <>
@@ -216,15 +240,82 @@ const UserProfile = () => {
                 </div>
               </div>
 
-              <div className="profile-options d-flex gap-4">
-                <button className="option-btn">Booked Tours</button>
-                <button className="option-btn">Reviews</button>
+              <div className="profile-options">
                 <button className="option-btn" onClick={() => setShow(true)}>
                   Update Password
                 </button>
               </div>
             </div>
           </Col>
+        </Row>
+        <Row className="mt-5">
+          {isLoading && <Spinner animation="grow" className="text-center" />}
+          {bookings?.length ? (
+            <Accordion>
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
+                  Booked Tours ({bookings?.length})
+                </Accordion.Header>
+                <Accordion.Body>
+                  <Table striped bordered hover>
+                    <thead>
+                      <tr className="booking-table-head">
+                        <td>Date of Issue</td>
+                        <td>Tour</td>
+                        <td>Number of guests</td>
+                        <td>Total Price</td>
+                        <td>Payment Status</td>
+                        <td>Tour Date</td>
+                        <td>Action</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {bookings?.map((booking) => (
+                        <tr key={booking._id} className="booking-table-body">
+                          <td>
+                            {new Date(booking?.createdAt).toLocaleDateString()}
+                          </td>
+                          <td>{booking?.tour?.tourName}</td>
+                          <td>{booking?.tour?.guestSize}</td>
+                          <td>${booking?.tour?.totalPrice}</td>
+                          <td
+                            className={
+                              booking?.paymentStatus === "paid"
+                                ? "text-success"
+                                : "text-danger"
+                            }
+                          >
+                            {booking?.paymentStatus.toUpperCase()}
+                          </td>
+                          <td>
+                            {new Date(
+                              booking?.tour?.bookAt
+                            ).toLocaleDateString()}
+                          </td>
+                          <td>
+                            <Button
+                              variant="danger"
+                              className="cancel-booking-btn"
+                              onClick={() => handleBookingCancel(booking)}
+                              disabled={booking?.paymentStatus !== "paid"}
+                            >
+                              {booking?.paymentStatus === "Refunded"
+                                ? "CANCELLED"
+                                : "Cancel Booking"}
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          ) : (
+            <div>
+              <h1>No Bookings!</h1>
+            </div>
+          )}
         </Row>
         <style jsx="true">
           {`

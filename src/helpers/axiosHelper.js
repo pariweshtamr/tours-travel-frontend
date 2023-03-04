@@ -195,6 +195,22 @@ export const createBooking = async (obj) => {
   }
 }
 
+export const getUserBookings = async () => {
+  try {
+    const { data } = await axios.get(bookingUrl + "/userBookings/tour", {
+      headers: {
+        Authorization: sessionStorage.getItem("accessJwt"),
+      },
+    })
+    return data
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    }
+  }
+}
+
 // STRIPE
 
 export const createCheckoutSession = async (obj) => {
@@ -220,6 +236,22 @@ export const createCheckoutSession = async (obj) => {
 export const getStripeClientSecret = async (obj) => {
   try {
     const { data } = await axios.post(paymentUrl + "/create", obj)
+    return data
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    }
+  }
+}
+
+export const getRefundForBooking = async (obj) => {
+  try {
+    const { data } = await axios.post(paymentUrl + "/refund", obj, {
+      headers: {
+        Authorization: sessionStorage.getItem("accessJwt"),
+      },
+    })
     return data
   } catch (error) {
     return {
