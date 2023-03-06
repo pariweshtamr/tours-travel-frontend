@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Project Title
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tours & Travel Booking Application
 
-## Available Scripts
+## Demo
 
-In the project directory, you can run:
+Access my site at https://toursntravel.vercel.app/
 
-### `npm start`
+## Table of Content
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- About The App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Screenshots
 
-### `npm test`
+- Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Features
 
-### `npm run build`
+- Environemtn Variables
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Run Locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## About The App
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This web application is a fully functional travel booking app and users can view different tours, book tours and pay using stripe. Users can alos give reviews to a tour and view their bookings in their profile. Operations such as updateing password, login and register features are also included in the app.
 
-### `npm run eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![App Screenshot](https://github.com/pariweshtamr/official-portfolio/blob/main/public/images/tours&travel/full.png?raw=true)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Client:** React, Redux Toolkit, Scss, Axios, Bootstrap, Masonry, Carousel
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Server:** Node, Express, Mongo, Bcrypt, JWT, Stripe, Cors, Morgan
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Multi-page application
+- Register/Login
+- Auto-Login
+- Book Tours
+- Pay for tours while booking using stripe
+- Give reviews
+- Delete reviews
+- Update password
+- View booked tours
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Environment Variables
 
-### Code Splitting
+To run this project, you will need to add the following environment variables to your .env file
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`REACT_APP_ROOT_URL`
 
-### Analyzing the Bundle Size
+`REACT_APP_STRIPE_PUBLISHABLE_KEY`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Run Locally
 
-### Making a Progressive Web App
+Clone the project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+  git clone https://link-to-project
+```
 
-### Advanced Configuration
+Go to the project directory
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+  cd my-project
+```
 
-### Deployment
+Install dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+  npm install
+```
 
-### `npm run build` fails to minify
+Start the server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+  npm start
+```
